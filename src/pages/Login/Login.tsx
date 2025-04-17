@@ -9,21 +9,18 @@ const Login = () => {
     };
 
     return (
-        <div className="wrapper">
-        <div className="content dark">
-            <header>Sign in</header>
-            <div>
-                <input placeholder="Username"></input>
-                <input placeholder="Password"></input>
-            </div>
-            <div>
-                {/* <button onClick={handleLogin}>Sign in</button> */}
-                <button>Sign in</button>
+        <div className="wrapper-login">
+            <div className="content dark">
+                <div className="header-login">Sign in</div>
+                <div>
+                    <input placeholder="Username"></input>
+                    <input placeholder="Password"></input>
+                </div>
+                <div>
+                    <button onClick={handleLogin}>Sign in</button>
+                </div>
             </div>
         </div>
-
-        </div>
-
     );
 };
 

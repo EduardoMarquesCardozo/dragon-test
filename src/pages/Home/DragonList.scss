@@ -1,0 +1,34 @@
+@import "../../styles/_variables.scss";
+
+.wrapper-home{
+    justify-content: flex-start;
+    align-items: center; 
+    width: 100vw;
+    height: 100vh;
+    .content-home{
+        width: 100%;
+        flex-direction: row;
+        gap: 64px;
+        justify-content: center;
+        .card-dragon{
+            border: 1px solid $light;
+            border-radius: 4px;
+            background-color: $medium;
+            .card-title{
+                padding: 4px 8px;
+                text-align: start;
+            }
+            .card-body{
+                background-color: $light;
+                border-radius: 100%;
+                padding: 16px;
+                margin: 16px;
+            }
+            .card-footer{
+                text-align: end;
+                padding-right: 8px;
+            }
+        }
+    }
+    
+}
