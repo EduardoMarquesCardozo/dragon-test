@@ -1,0 +1,20 @@
+.wrapper{
+    padding: 24px;
+    min-width: 300px;
+    header{
+        font-weight: bold;
+        text-align: left;
+    }
+    div{
+        input {
+            padding: 8px 8px;
+            font-size: 1rem;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            max-width: 100%;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+    
+}
