@@ -1,42 +1,27 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./DragonDetails.scss";
-import { useEffect, useState } from "react";
-import { getDragonById } from "../../../services/dragonService";
-import { IDragon } from "../../../models/Dragon";
+import { useEffect } from "react";
 import BackButton from "../../../components/BackButton/BackButton";
+import { useDragonStore } from "../../../store/DragonStore";
 
 const DragonDetails = () => {
     const { id } = useParams();
-    const [dragon, setDragon] = useState<IDragon | null>(null);
-    const navigate = useNavigate();
+    const { currentDragon, fetchDragonById } = useDragonStore();
 
     useEffect(() => {
-        if (id) {
-            const fetchDragon = async () => {
-            try {
-                const response = await getDragonById(id);
-                setDragon(response.data);
-            } catch (error) {
-                navigate("/home");
-            }
-            };
-        
-            fetchDragon();
-        }
-        }, [id]);
-
-
+        fetchDragonById(id!);
+    }, [id]);
 
     const formatDate = (isoDate: string) => {
         const date = new Date(isoDate);
         return date.toLocaleString('pt-BR', {
-          timeZone: 'America/Sao_Paulo',
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
+            timeZone: 'America/Sao_Paulo',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
         });
     };
       
@@ -47,15 +32,15 @@ const DragonDetails = () => {
                 <div className="details">
                     <div>
                         <label>Criação:</label>
-                        <p>{formatDate(dragon?.createdAt || '')}</p>
+                        <p>{formatDate(currentDragon?.createdAt || '')}</p>
                     </div>
                     <div>
                         <label>Nome:</label>
-                        <p>{dragon?.name}</p>
+                        <p>{currentDragon?.name}</p>
                     </div>
                     <div>
                         <label>Tipo:</label>
-                        <p>{dragon?.type}</p>
+                        <p>{currentDragon?.type}</p>
                     </div>
                     <BackButton/>
                 </div>

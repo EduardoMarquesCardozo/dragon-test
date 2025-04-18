@@ -1,31 +1,22 @@
 import SpikedDragon from "../../assets/spiked-dragon.svg";
 import "./DragonList.scss"
-import { IDragon } from "../../models/Dragon";
 import { useEffect, useState } from "react";
-import { deleteDragon, getDragon } from "../../services/dragonService";
+import { deleteDragon } from "../../services/dragonService";
 import Modal from "../../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
+import { useDragonStore } from "../../store/DragonStore";
 
 const DragonList = () => {
+    const navigate = useNavigate();
+
     const [isConfirmDelete, setIsConfirmDelete] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
     const [error, setError] = useState("");
-    const [currentDragon, setCurrentDragon] = useState<IDragon | null>(null);
-    const [dragons, setDragons] = useState<IDragon[]>([]);
+    const { dragons, fetchDragons, currentDragon, fetchDragonById } = useDragonStore();
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await getDragon();
-            setDragons(response.data);
-          } catch (error) {
-            console.error("Erro ao buscar dragões:", error);
-          }
-        };
-        fetchData();
-      }, []);
-
-    const navigate = useNavigate();
+        fetchDragons();
+    }, []);
 
     const navigationClick = (rota: string, id?: string) => {
         const path = id ? `/${rota}/${id}` : `/${rota}`;
@@ -39,6 +30,7 @@ const DragonList = () => {
           await deleteDragon(currentDragon.id);
           setIsConfirmDelete(false);
           setModalOpen(false);
+          fetchDragons();
         } catch (error) {
           setError("Erro ao deletar dragão:"+ error);
         }
@@ -51,7 +43,7 @@ const DragonList = () => {
                     dragons.map((dragon) => (
                         <div key={dragon.id} className="card-dragon" onClick={() => {
                                 setModalOpen(true);
-                                setCurrentDragon(dragon)
+                                fetchDragonById(dragon.id)
                             }}>
                             <div className="card-title">{dragon.name}</div>
                             <div className="card-body">

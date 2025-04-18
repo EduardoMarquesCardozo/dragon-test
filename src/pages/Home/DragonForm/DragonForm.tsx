@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./DragonForm.scss";
 import { useEffect, useState } from "react";
-import { createDragon, getDragonById, putDragon } from "../../../services/dragonService";
-import { IDragon } from "../../../models/Dragon";
+import { createDragon, putDragon } from "../../../services/dragonService";
 import BackButton from "../../../components/BackButton/BackButton";
+import { useDragonStore } from "../../../store/DragonStore";
 
 const DragonForm = () => {
     const navigate = useNavigate();
@@ -11,50 +11,40 @@ const DragonForm = () => {
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [error, setError] = useState("");
-    const [dragon, setDragon] = useState<IDragon | null>(null);
-  
+    const { currentDragon, fetchDragonById } = useDragonStore();
+
     const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-  
-      const data = {
+        e.preventDefault();
+
+        const data = {
         name,
         type,
-      };
-      if(id){
+        };
+        if(id){
         try {
-            await putDragon(dragon!.id, data);
+            await putDragon(currentDragon!.id, data);
             navigate("/home");
         } catch (error) {
             setError("Erro ao editar o dragão:"+ error);
         }
-      }else{
+        }else{
         try {
             await createDragon(data);
             navigate("/home");
         } catch (error) {
             setError("Erro ao criar dragão:"+ error);
         }
-      }
-      
+        }
+        
     };
 
     useEffect(() => {
         if (id) {
-          const fetchDragon = async () => {
-            try {
-              const response = await getDragonById(id);
-              setDragon(response.data);
-              setName(response.data.name);
-              setType(response.data.type);
-            } catch (error) {
-              setError("Não foi possível carregar os dados do dragão." + error);
-              navigate("/home");
-            }
-          };
-      
-          fetchDragon();
+            fetchDragonById(id!);
+            setName(currentDragon!.name);
+            setType(currentDragon!.type);
         }
-      }, [id]);
+        }, [id]);
 
     return (
         <div className="wrapper-form">
