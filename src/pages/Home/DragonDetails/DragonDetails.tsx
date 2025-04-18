@@ -1,13 +1,45 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./DragonDetails.scss";
+import { useEffect, useState } from "react";
+import { getDragonById } from "../../../services/dragonService";
+import { IDragon } from "../../../models/Dragon";
+import BackButton from "../../../components/BackButton/BackButton";
 
 const DragonDetails = () => {
     const { id } = useParams();
+    const [dragon, setDragon] = useState<IDragon | null>(null);
     const navigate = useNavigate();
 
-    const backToHome = () => {
-      navigate('/home');
+    useEffect(() => {
+        if (id) {
+            const fetchDragon = async () => {
+            try {
+                const response = await getDragonById(id);
+                setDragon(response.data);
+            } catch (error) {
+                navigate("/home");
+            }
+            };
+        
+            fetchDragon();
+        }
+        }, [id]);
+
+
+
+    const formatDate = (isoDate: string) => {
+        const date = new Date(isoDate);
+        return date.toLocaleString('pt-BR', {
+          timeZone: 'America/Sao_Paulo',
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
     };
+      
     return (
         <div className="wrapper-details">
             <div className="dark">
@@ -15,17 +47,17 @@ const DragonDetails = () => {
                 <div className="details">
                     <div>
                         <label>Criação:</label>
-                        <p>25/08/-14448</p>
+                        <p>{formatDate(dragon?.createdAt || '')}</p>
                     </div>
                     <div>
                         <label>Nome:</label>
-                        <p>Smaug</p>
+                        <p>{dragon?.name}</p>
                     </div>
                     <div>
                         <label>Tipo:</label>
-                        <p>Black</p>
+                        <p>{dragon?.type}</p>
                     </div>
-                    <button onClick={backToHome}>Voltar</button>
+                    <BackButton/>
                 </div>
             </div>
         </div>

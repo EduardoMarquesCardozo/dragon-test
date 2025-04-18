@@ -7,6 +7,7 @@
     .content-home{
         max-width: 80%;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 64px;
         justify-content: center;
         .card-dragon{
@@ -29,5 +30,8 @@
             }
         }
     }
-    
+}
+
+.delete{
+    background-color: #EC5D67;
 }
