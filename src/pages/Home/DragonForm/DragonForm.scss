@@ -1,0 +1,19 @@
+.wrapper-form{
+    justify-content: center;
+    align-items: center; 
+    width: 100vw;
+    height: 100vh;
+    .dark{
+        padding: 16px 32px;
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            label{
+                text-align: justify;
+            }
+        }
+    }
+
+    
+}

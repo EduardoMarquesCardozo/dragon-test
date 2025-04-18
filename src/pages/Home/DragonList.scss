@@ -1,4 +1,3 @@
-@import "../../styles/_variables.scss";
 
 .wrapper-home{
     justify-content: flex-start;
@@ -6,20 +5,20 @@
     width: 100vw;
     height: 100vh;
     .content-home{
-        width: 100%;
+        max-width: 80%;
         flex-direction: row;
         gap: 64px;
         justify-content: center;
         .card-dragon{
-            border: 1px solid $light;
+            border: 1px solid #cacaca;
             border-radius: 4px;
-            background-color: $medium;
+            background-color: #5e5e5e;
             .card-title{
                 padding: 4px 8px;
                 text-align: start;
             }
             .card-body{
-                background-color: $light;
+                background-color: #cacaca;
                 border-radius: 100%;
                 padding: 16px;
                 margin: 16px;

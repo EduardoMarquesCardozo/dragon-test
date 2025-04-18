@@ -1,0 +1,19 @@
+.wrapper-details{
+    justify-content: center;
+    align-items: center; 
+    width: 100vw;
+    height: 100vh;
+    .dark{
+        padding: 32px;
+        .details{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            label{
+                text-align: justify;
+            }
+        }
+    }
+
+    
+}
