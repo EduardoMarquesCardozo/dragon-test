@@ -1,0 +1,33 @@
+
+.wrapper-home{
+    justify-content: flex-start;
+    align-items: center; 
+    width: 100vw;
+    height: 100vh;
+    .content-home{
+        max-width: 80%;
+        flex-direction: row;
+        gap: 64px;
+        justify-content: center;
+        .card-dragon{
+            border: 1px solid #cacaca;
+            border-radius: 4px;
+            background-color: #5e5e5e;
+            .card-title{
+                padding: 4px 8px;
+                text-align: start;
+            }
+            .card-body{
+                background-color: #cacaca;
+                border-radius: 100%;
+                padding: 16px;
+                margin: 16px;
+            }
+            .card-footer{
+                text-align: end;
+                padding-right: 8px;
+            }
+        }
+    }
+    
+}
