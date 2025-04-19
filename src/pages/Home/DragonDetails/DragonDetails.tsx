@@ -1,13 +1,30 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./DragonDetails.scss";
+import { useEffect } from "react";
+import BackButton from "../../../components/BackButton/BackButton";
+import { useDragonStore } from "../../../store/DragonStore";
 
 const DragonDetails = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
+    const { currentDragon, fetchDragonById } = useDragonStore();
 
-    const backToHome = () => {
-      navigate('/home');
+    useEffect(() => {
+        fetchDragonById(id!);
+    }, [id]);
+
+    const formatDate = (isoDate: string) => {
+        const date = new Date(isoDate);
+        return date.toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
     };
+      
     return (
         <div className="wrapper-details">
             <div className="dark">
@@ -15,17 +32,17 @@ const DragonDetails = () => {
                 <div className="details">
                     <div>
                         <label>Criação:</label>
-                        <p>25/08/-14448</p>
+                        <p>{formatDate(currentDragon?.createdAt || '')}</p>
                     </div>
                     <div>
                         <label>Nome:</label>
-                        <p>Smaug</p>
+                        <p>{currentDragon?.name}</p>
                     </div>
                     <div>
                         <label>Tipo:</label>
-                        <p>Black</p>
+                        <p>{currentDragon?.type}</p>
                     </div>
-                    <button onClick={backToHome}>Voltar</button>
+                    <BackButton/>
                 </div>
             </div>
         </div>
