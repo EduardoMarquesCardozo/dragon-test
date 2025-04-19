@@ -1,0 +1,27 @@
+
+header{
+  display: flex;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-bottom: 1px solid #cacaca;
+  top: 0;
+  .logout{
+    height: 80px;
+    height: 56px;
+    margin-right: 4%;
+  }
+  div{
+    flex-direction: row;
+    padding: 8px 32px;
+    h1 {
+      display: flex;
+      align-items: center;
+      padding-left: 16px;
+      margin-left: 16px;
+    }
+  }
+
+}
