@@ -4,11 +4,27 @@
     width: 100vw;
     height: 100vh;
     .content{
-        padding: 24px;
+        padding: 40px 24px;
         min-width: 300px;
+        border-radius: 12px;
         .header-login{
             font-weight: bold;
             text-align: left;
+            font-size: 32px;
+            align-items: center;
+        }
+        .body-login{
+            gap: 8px;
+            label{
+                text-align: start;
+                font-weight: 700;
+                font-size: 14px;
+                color: #FFFFFF;
+    
+            }
+        }
+        button{
+            margin-top: 8px;
         }
     }
     

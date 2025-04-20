@@ -6,33 +6,60 @@
     height: 100vh;
     padding-bottom: 32px;
     .content-home{
+        padding-bottom: 32px;
         max-width: 80%;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 64px;
         justify-content: center;
         .card-dragon{
-            border: 1px solid #cacaca;
-            border-radius: 4px;
-            background-color: #5e5e5e;
+            width: 214px;
+            max-height: 384px;
+            text-align: start;
+            border-radius: 12px;
+            padding: 24px 16px 0px 16px;
+            .card-type{
+                padding-right: 8px;
+                background-color: #D9D9D9;
+                border-radius: 12px;
+                padding: 4px 16px ;
+                color: #5E5E5E;
+                font-weight: bold;
+                width: fit-content;
+            }
             .card-title{
-                padding: 4px 8px;
+                font-size: 20px;
+                font-weight: 700;
                 text-align: start;
+                height: 260px;
             }
             .card-body{
-                background-color: #cacaca;
-                border-radius: 100%;
-                padding: 16px;
-                margin: 16px;
+                align-items: end;
+                justify-content: end;
+                padding: 1px;
+                margin: 1px;
             }
-            .card-footer{
-                text-align: end;
-                padding-right: 8px;
+        }
+        .card-dragon:hover{
+            border: 1px dashed #FFFFFF;
+        }
+        .register{
+            height: 100%;
+            align-items: center !important;
+            justify-content: center !important;
+            div{
+                width: 48px;
+                height: 48px;
+                justify-content: center;
+                align-items: center;
+                background-color: #2F6FED;
+                border-radius: 100%;
+            }
+            p{
+                font-size: 20px;
+                color: #FFF;
+                font-weight: 700;
             }
         }
     }
-}
-
-.delete{
-    background-color: #EC5D67;
 }

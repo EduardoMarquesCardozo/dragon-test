@@ -1,0 +1,13 @@
+.option-card{
+    p{margin-left: 16px;}
+    section{
+      display: flex;
+      align-items: center;
+      img{
+        border-radius: 100%;
+      }
+    }
+  }
+  .option-card:hover{
+      border: 1px dashed #FFFFFF;
+  }

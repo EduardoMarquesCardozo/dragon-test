@@ -2,9 +2,15 @@ import SpikedDragon from "../../assets/spiked-dragon.svg";
 import "./DragonList.scss"
 import { useEffect, useState } from "react";
 import { deleteDragon } from "../../services/dragonService";
+import Plus from "../../assets/plus.svg";
+import Trash from "../../assets/trash.svg";
+import Pencil from "../../assets/pencil.svg";
+import Info from "../../assets/info.svg";
+
 import Modal from "../../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { useDragonStore } from "../../store/DragonStore";
+import OptionCard from "../../components/OptionCard/OptionCard";
 
 const DragonList = () => {
     const navigate = useNavigate();
@@ -23,55 +29,87 @@ const DragonList = () => {
         navigate(path);
     };
 
+    const returnModal = () => {
+        setModalOpen(false);
+        setIsConfirmDelete(false);
+    };
+
     const handleDelete = async () => {
         if (!currentDragon) return;
       
         try {
-          await deleteDragon(currentDragon.id);
-          setIsConfirmDelete(false);
-          setModalOpen(false);
-          fetchDragons();
+            await deleteDragon(currentDragon.id);
+            setIsConfirmDelete(false);
+            setModalOpen(false);
+            fetchDragons();
         } catch (error) {
-          setError("Erro ao deletar dragão:"+ error);
+            setError("Erro ao deletar dragão:"+ error);
         }
       };
 
     return(
         <div className="wrapper-home">
             <div className="content-home">
+                        <div className="card-dragon dark default-border" onClick={() => navigationClick("form")}>
+                            <div className="card-body register">
+                                <div>
+                                    <img src={Plus} alt="SpikedDragon" width={"42px"} />
+                                </div>
+                                <p>
+                                    Cadastrar Dragão
+                                </p>
+                            </div>
+                        </div>
                 {
                     dragons.map((dragon) => (
-                        <div key={dragon.id} className="card-dragon" onClick={() => {
+                        <div key={dragon.id} className="card-dragon dark default-border" onClick={() => {
                                 setModalOpen(true);
                                 fetchDragonById(dragon.id)
                             }}>
+                            <div className="card-type">{dragon.type}</div>
                             <div className="card-title">{dragon.name}</div>
                             <div className="card-body">
                                 <div>
-                                    <img src={SpikedDragon} alt="SpikedDragon" width={"64px"} />
+                                    <img src={SpikedDragon} alt="SpikedDragon" width={"74px"} />
                                 </div>
                             </div>
-                            <div className="card-footer">{dragon.type}</div>
                         </div>
                     ))
                 }
             </div>
-            <button onClick={() => navigationClick("form")}>Cadastrar Dragão</button>
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
                 <>
                     {isConfirmDelete? 
-                        (<div>
-                            <p>Confirmar deleção ?</p>
-                            {error && <p>Confirmar deleção ?</p>}
-                            <button className="delete" onClick={() => handleDelete()}>Confirmar</button>
-                            <button onClick={() => setModalOpen(false)}>Voltar</button>
+                        (<div className="modal-confirm">
+                            <h1>Confirmar deleção ?</h1>
+                            {error ? <p>{error}</p>: <p>Todas as informações sobre {currentDragon?.name} serão removidas do sistema e não será mais possível acessá-las.</p>}
+                            <div className="button-group">
+                                <button className="back" onClick={() => returnModal()}>Voltar</button>
+                                <button className="delete" onClick={() => handleDelete()}>Excluir</button>
+                            </div>
                         </div>):
-                        (<div>
-                            <p>O que deseja fazer com {currentDragon?.name}</p>
-                            <button onClick={() => navigationClick("details", currentDragon!.id)}>Ver detalhes</button>
-                            <button onClick={() => navigationClick("form", currentDragon!.id)}>Editar</button>
-                            <button className="delete" onClick={() =>setIsConfirmDelete(true)}>Deletar</button>
-                        </div>)}
+                        (<div className="modal-actions">
+                            <div>
+                                <h1>Ações</h1>
+                                <p>O que deseja fazer com {currentDragon?.name}</p>
+                            </div>
+                            <OptionCard
+                                icon={Info}
+                                text="Ver detalhes"
+                                onClick={() => navigationClick("details", currentDragon!.id)}
+                            />
+                            <OptionCard
+                                icon={Pencil}
+                                text="Editar"
+                                onClick={() => navigationClick("form", currentDragon!.id)}
+                            />
+                            <OptionCard
+                                icon={Trash}
+                                text="Excluir"
+                                onClick={() => setIsConfirmDelete(true)}
+                            />
+                        </div>)
+                    }
                 </>
             </Modal>
         </div>

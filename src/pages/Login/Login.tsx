@@ -26,16 +26,18 @@ const Login = () => {
 
     return (
         <div className="wrapper-login">
-            <div className="content dark">
-                <div className="header-login">Sign in</div>
-                <div>
+            <div className="content dark default-border">
+                <div className="header-login">Acesso</div>
+                <div className="body-login">
+                    <label>Usuário</label>
                     <input 
-                        placeholder="Username" 
+                        placeholder="Marcelo" 
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
+                    <label>Senha</label>
                     <input 
-                        placeholder="Password" 
+                        placeholder="*****" 
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -43,7 +45,7 @@ const Login = () => {
                 </div>
                 {error !== "" && <p>{error}</p>}
                 <div>
-                    <button onClick={handleLogin} disabled={password =="" && username == ""}>Sign in</button>
+                    <button onClick={handleLogin} disabled={password =="" && username == ""}>Acessar</button>
                 </div>
             </div>
         </div>
