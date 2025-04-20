@@ -52,12 +52,12 @@ const DragonForm = () => {
                 <h2>{id? "Edição": "Cadastro"} de Dragão</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Nome:</label>
-                        <input value={name} onChange={(e) => setName(e.target.value)} required />
+                        <label htmlFor="name">Nome:</label>
+                        <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
                     </div>
                     <div>
-                        <label>Tipo:</label>
-                        <input value={type} onChange={(e) => setType(e.target.value)} required />
+                        <label htmlFor="type">Tipo:</label>
+                        <input id="type" value={type} onChange={(e) => setType(e.target.value)} required />
                     </div>
                     <button type="submit" disabled={name == "" && type==""}>Salvar</button>
                     <BackButton/>
