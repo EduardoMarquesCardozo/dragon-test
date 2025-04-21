@@ -50,16 +50,16 @@ const DragonList = () => {
     return(
         <div className="wrapper-home">
             <div className="content-home">
-                        <div className="card-dragon dark default-border" onClick={() => navigationClick("form")}>
-                            <div className="card-body register">
-                                <div>
-                                    <img src={Plus} alt="SpikedDragon" width={"42px"} />
-                                </div>
-                                <p>
-                                    Cadastrar Dragão
-                                </p>
-                            </div>
+                <div className="card-dragon dark default-border" onClick={() => navigationClick("form")}>
+                    <div className="card-body register">
+                        <div>
+                            <img src={Plus} alt="SpikedDragon" width={"42px"} />
                         </div>
+                        <p>
+                            Cadastrar Dragão
+                        </p>
+                    </div>
+                </div>
                 {
                     dragons.map((dragon) => (
                         <div key={dragon.id} className="card-dragon dark default-border" onClick={() => {
@@ -96,16 +96,19 @@ const DragonList = () => {
                             <OptionCard
                                 icon={Info}
                                 text="Ver detalhes"
+                                alt="detalhes"
                                 onClick={() => navigationClick("details", currentDragon!.id)}
                             />
                             <OptionCard
                                 icon={Pencil}
                                 text="Editar"
+                                alt="editar"
                                 onClick={() => navigationClick("form", currentDragon!.id)}
                             />
                             <OptionCard
                                 icon={Trash}
                                 text="Excluir"
+                                alt="excluir"
                                 onClick={() => setIsConfirmDelete(true)}
                             />
                         </div>)

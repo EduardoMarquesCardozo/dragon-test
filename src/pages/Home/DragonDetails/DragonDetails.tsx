@@ -29,7 +29,7 @@ const DragonDetails = () => {
         <div className="wrapper-details">
             <div className="dark default-border">
                 <h1>Detalhes</h1>
-                <p>Detalhes</p>
+                <p>Confira os dados do dragão</p>
                 <div className="details">
                     <div className="content default-border">
                         <div className="brothers">
