@@ -11,7 +11,7 @@ const PrivateRoutes = () => {
 
     return token == "fake-jwt-token-123" ?
         <>
-            <header>
+            <header className="default-border">
                 <div>
                     <img className="img" src={Dragon} alt="Dragon logo" width={"32px"}/>
                     <h1>Dragon List</h1>

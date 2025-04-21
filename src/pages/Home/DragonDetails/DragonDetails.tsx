@@ -27,21 +27,22 @@ const DragonDetails = () => {
       
     return (
         <div className="wrapper-details">
-            <div className="dark">
-                <h2>Detalhes do Dragão {id}</h2>
+            <div className="dark default-border">
+                <h1>Detalhes</h1>
+                <p>Detalhes</p>
                 <div className="details">
-                    <div>
-                        <label>Criação:</label>
-                        <p>{formatDate(currentDragon?.createdAt || '')}</p>
+                    <div className="content default-border">
+                        <div className="brothers">
+                            <div className="card-type">
+                                <p>{currentDragon?.type}</p>
+                            </div>
+                            <p>{formatDate(currentDragon?.createdAt || '')}</p>
+                        </div>
+                        <div>
+                            <h1>{currentDragon?.name}</h1>
+                        </div>                    
                     </div>
-                    <div>
-                        <label>Nome:</label>
-                        <p>{currentDragon?.name}</p>
-                    </div>
-                    <div>
-                        <label>Tipo:</label>
-                        <p>{currentDragon?.type}</p>
-                    </div>
+                    
                     <BackButton/>
                 </div>
             </div>
