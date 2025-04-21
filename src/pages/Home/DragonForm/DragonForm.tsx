@@ -17,23 +17,23 @@ const DragonForm = () => {
         e.preventDefault();
 
         const data = {
-        name,
-        type,
+            name,
+            type,
         };
         if(id){
-        try {
-            await putDragon(currentDragon!.id, data);
-            navigate("/home");
-        } catch (error) {
-            setError("Erro ao editar o dragão:"+ error);
-        }
-        }else{
-        try {
-            await createDragon(data);
-            navigate("/home");
-        } catch (error) {
-            setError("Erro ao criar dragão:"+ error);
-        }
+            try {
+                await putDragon(currentDragon!.id, data);
+                navigate("/home");
+            } catch (error) {
+                setError("Erro ao editar o dragão:"+ error);
+            }
+            }else{
+            try {
+                await createDragon(data);
+                navigate("/home");
+            } catch (error) {
+                setError("Erro ao criar dragão:"+ error);
+            }
         }
         
     };
@@ -48,19 +48,24 @@ const DragonForm = () => {
 
     return (
         <div className="wrapper-form">
-            <div className="dark">
-                <h2>{id? "Edição": "Cadastro"} de Dragão</h2>
+            <div className="dark default-border form-dragon">
+                <h2>{id? "Edição": "Cadastro"}</h2>
+                <p>{id? 
+                    "Altere os dados cadastrados do dragão."
+                    : "Informe os dados do dragão."}</p>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name">Nome:</label>
-                        <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                        <label>Nome:</label>
+                        <input placeholder="Ex: Smaug" value={name} onChange={(e) => setName(e.target.value)} required />
                     </div>
                     <div>
-                        <label htmlFor="type">Tipo:</label>
-                        <input id="type" value={type} onChange={(e) => setType(e.target.value)} required />
+                        <label>Tipo:</label>
+                        <input placeholder="Ex: Vermelho" value={type} onChange={(e) => setType(e.target.value)} required />
                     </div>
-                    <button type="submit" disabled={name == "" && type==""}>Salvar</button>
-                    <BackButton/>
+                    <div className="button-group">
+                        <BackButton/>
+                        <button type="submit" disabled={name == "" && type==""}>{id? "Salvar": "Criar"}</button>
+                    </div>
                 </form>
                 {error !== "" && <p>{error}</p>}
             </div>
