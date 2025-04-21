@@ -31,7 +31,7 @@ const Login = () => {
                 <div className="body-login">
                     <label>Usuário</label>
                     <input 
-                        placeholder="Marcelo" 
+                        placeholder="Eduardo" 
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />

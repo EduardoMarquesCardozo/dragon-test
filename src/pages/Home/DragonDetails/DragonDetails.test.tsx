@@ -8,13 +8,15 @@ import { useDragonStore } from "../../../store/DragonStore";
 
 
 describe("DragonDetails Page", () => {
+
     
     describe("WHEN the page is loaded with a correct id",() =>{
         beforeEach(() => {
             render(<DragonDetails />, { wrapper: MemoryRouter });
         });
-        it("SHOULD show correctly with a title 'Detalhes do Dragão'", () => {
-            expect(screen.getByText(/Detalhes do Dragão/i)).toBeInTheDocument();
+        it("SHOULD show correctly with a title 'Detalhes' and a subtitle 'Confira os dados do dragão'", () => {
+            expect(screen.getByText(/Detalhes/i)).toBeInTheDocument();
+            expect(screen.getByText(/Confira os dados do dragão/i)).toBeInTheDocument();
         });
         it("SHOULD render a button with the following text 'Voltar'", () => {
             expect(screen.getByRole("button", { name: /voltar/i })).toBeInTheDocument();
@@ -49,8 +51,9 @@ describe("DragonDetails Page", () => {
         beforeEach(() => {
             render(<DragonDetails />, { wrapper: MemoryRouter });
         });
-        it("SHOULD show correctly with a title 'Detalhes do Dragão 1'", () => {
-            expect(screen.getByText(/Detalhes do Dragão 1/i)).toBeInTheDocument();
+        it("SHOULD show correctly with a title 'Detalhes' and a subtitle 'Confira os dados do dragão'", () => {
+            expect(screen.getByText(/Detalhes/i)).toBeInTheDocument();
+            expect(screen.getByText(/Confira os dados do dragão/i)).toBeInTheDocument();
         });
         
         it("SHOULD show correctly with name Smaug", () => {

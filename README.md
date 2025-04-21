@@ -51,6 +51,8 @@ export default tseslint.config({
     ...reactDom.configs.recommended.rules,
   },
 })
+
+//https://www.svgrepo.com/
 //https://stackoverflow.com/questions/76705164/whats-the-difference-between-getbytext-vs-findbytext-vs-querybytext-in-testing
 // difference in get, find and query
 // get ideal when the element is already rendered

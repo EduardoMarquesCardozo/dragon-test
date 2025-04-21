@@ -26,9 +26,9 @@ describe("Testing Login page", () => {
     it("should reder with two inputs and a button", () => {
         render(<Login />, { wrapper: MemoryRouter });
         
-        expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
-        expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: /sign in/i })).toBeInTheDocument();
+        expect(screen.getByPlaceholderText("Eduardo")).toBeInTheDocument();
+        expect(screen.getByPlaceholderText("*****")).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: /Acessar/i })).toBeInTheDocument();
     });
 
     it("should be able to fail to login", async () => {
@@ -39,14 +39,14 @@ describe("Testing Login page", () => {
 
         render(<Login />, { wrapper: MemoryRouter });
 
-        fireEvent.change(screen.getByPlaceholderText("Username"), {
+        fireEvent.change(screen.getByPlaceholderText("Eduardo"), {
             target: { value: "admin" },
         });
-        fireEvent.change(screen.getByPlaceholderText("Password"), {
+        fireEvent.change(screen.getByPlaceholderText("*****"), {
             target: { value: "admin" },
         });
 
-        fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
+        fireEvent.click(screen.getByRole("button", { name: /Acessar/i }));
 
         await waitFor(() => {
             expect(screen.getByText(errorMsg)).toBeInTheDocument();
@@ -60,14 +60,14 @@ describe("Testing Login page", () => {
         
         render(<Login />, { wrapper: MemoryRouter });
         
-        fireEvent.change(screen.getByPlaceholderText("Username"), {
+        fireEvent.change(screen.getByPlaceholderText("Eduardo"), {
             target: { value: "EDUARDO" },
         });
-        fireEvent.change(screen.getByPlaceholderText("Password"), {
+        fireEvent.change(screen.getByPlaceholderText("*****"), {
             target: { value: "ADMIN" },
         });
         
-        fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
+        fireEvent.click(screen.getByRole("button", { name: /Acessar/i }));
         
         await waitFor(() => {
             expect(authService.dragonLogin).toHaveBeenCalledWith("EDUARDO", "ADMIN");
