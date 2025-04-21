@@ -1,61 +1,74 @@
-# React + TypeScript + Vite
+# Dragon Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project allows users to create, read, update, and delete information about dragons.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19.0.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue)
+![Vite](https://img.shields.io/badge/Vite-6.3.1-purple)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Dragon Listing**: View all dragons in a card-based interface
+- **Dragon Details**: View comprehensive information about each dragon
+- **Dragon Creation**: Add new dragons to the database
+- **Dragon Editing**: Modify existing dragon information
+- **Dragon Deletion**: Remove dragons from the system
+- **User Authentication**: Secure access to dragon management features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+This project is built using modern web technologies:
+
+- **Frontend Framework**: React 19.0.0 with TypeScript
+- **Build Tool**: Vite 6.3.1
+- **State Management**: Zustand 5.0.3
+- **Routing**: React Router 7.5.0
+- **Styling**: SASS 1.86.3
+- **HTTP Client**: Axios 1.8.4
+- **Testing**: Vitest and React Testing Library
+
+## Installation and Setup
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- Yarn package manager
+
+### Getting Started
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/dragon-test.git
+cd dragon-test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-
-//https://www.svgrepo.com/
-//https://stackoverflow.com/questions/76705164/whats-the-difference-between-getbytext-vs-findbytext-vs-querybytext-in-testing
-// difference in get, find and query
-// get ideal when the element is already rendered
-// find ideal when element takes time to show, but it will be shown
-// query doesn't throw an error when it doesn't show on "screen" ideal to check if content is not instanced
+```bash
+yarn install
 ```
+
+3. **Start the development server**
+
+```bash
+yarn dev
+```
+
+4. **Run tests**
+
+```bash
+yarn test
+```
+
+## 🧪 Testing
+
+This project uses Vitest and React Testing Library for comprehensive testing. 
+
+## 🎨 SVG Credits
+
+All SVG icons used in this project were sourced from [SVG Repo](https://www.svgrepo.com/), a comprehensive library of free SVG vectors and icons.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
